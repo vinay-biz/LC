@@ -1,19 +1,12 @@
+#include <ranges>
 class Solution {
 public:
     int lengthOfLastWord(string s) {
-        int length = 0;
-        bool counting = false;
-        
-        for (int i = s.length() - 1; i >= 0; i--) {
-            if (s[i] != ' ') {
-                counting = true;
-                length++;
-            }
-            else if (counting) {
-                break;
-            }
-        }
-        
-        return length;
+        namespace rng = std::ranges;
+        static constexpr auto IsAlpha = [](auto c) { return std::isalpha(c); };
+        auto reversedWord = rng::reverse_view(s);
+        auto lastWordLastLetterIter  = rng::find_if(reversedWord, IsAlpha);
+        auto lastWordFirstLetterIter = rng::find_if(rng::next(lastWordLastLetterIter), reversedWord.end(), std::not_fn(IsAlpha));
+        return rng::distance(lastWordLastLetterIter, lastWordFirstLetterIter);
     }
 };
