@@ -1,7 +1,6 @@
 class Solution {
 public:
     int lengthOfLastWord(string s) {
-        bool flag = false; //To indicate first letter encounter
         int length=0;
 
         for(int i=s.length()-1 ; i>=0; i--) //Lets find first character that is not a whitespace
