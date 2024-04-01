@@ -1,22 +1,16 @@
 class Solution {
 public:
     int lengthOfLastWord(string s) {
-        int length=0;
+        int l=0, i = s.length()-1;
 
-        for(int i=s.length()-1 ; i>=0; i--) //Lets find first character that is not a whitespace
+        while(i>=0 && s[i]==' ') i--;
+      
+        while(i>=0 && s[i]!=' ')
         {
-            if(s[i]==' ') continue;
-
-            else
-            {
-                while(i>=0 && s[i] != ' ')
-                {
-                    length++;
-                    i--;
-                }
-                break;
-            }
+            i--;
+            l++;
         }
-        return length;
+        
+        return l;
     }
 };
