@@ -11,6 +11,6 @@ public:
             else if(count[sandwiches[i]] == 0) break;
         }
 
-        return max(count[0],count[1]);
+        return count[0]+count[1];
     }
 };
