@@ -1,16 +1,18 @@
 class Solution {
 public:
-    int countDigits(int num) {
-        int temp = num;
-        int count = 0;
-
-        while( temp )
+    int countDigits(int num)
+    { 
+        int cnt=0;
+        int oldn=num;
+        while(num!=0)
         {
-            int rem = temp%10;
-            if(num%rem == 0) count++;
-            temp = temp/10;
-        }
-
-        return count;
+            int val = num % 10;
+            if(oldn % val == 0)
+            {
+                cnt++;
+            }
+        num=num/10;    
+        }  
+    return cnt;    
     }
 };
