@@ -5,7 +5,7 @@ public:
 
         string ans = s + s;
 
-        if(ans.find(goal) == string::npos) return false;
+        if(ans.find(goal) == -1) return false;
         return true;
     }
 };
