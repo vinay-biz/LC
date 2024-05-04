@@ -7,18 +7,9 @@ public:
 
         while(left<=right)
         {
-            if(people[left]+people[right] <= limit)
-            {
-                left++;
-                right--;
-                ans++;
-            }
-
-            else 
-            {
-                right--;
-                ans++;
-            }
+            if(people[left]+people[right] <= limit)left++;
+            right--;
+            ans++;
         }
 
         return ans;
