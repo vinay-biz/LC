@@ -10,30 +10,49 @@
  */
 class Solution {
 public:
+    ListNode* rev(ListNode* head)
+    {
+        ListNode* prev = NULL;
+        ListNode* next = NULL;
+        ListNode* curr = head;
+
+        while(curr!=NULL)
+        {
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        return prev;
+    }
     bool isPalindrome(ListNode* head) {
-        int count = 0;
+        ListNode* slowptr = head;
+        ListNode* fastptr = head;
+        ListNode* prev = NULL; // maintain the last element of first half
+
+        while(fastptr != NULL && fastptr->next != NULL) //Find Middle of LL
+        {
+            prev = slowptr;
+            slowptr = slowptr->next;
+            fastptr = fastptr->next->next;
+        }
+
+        if(fastptr != NULL) 
+        {
+            prev = slowptr;
+            slowptr = slowptr->next;
+        }
+        prev->next = NULL;
+        prev->next = rev(slowptr);
+
         ListNode* temp = head;
+        prev = prev->next;
 
-        while(temp != NULL) //count number of nodes
+        while(prev != NULL)
         {
-            temp = temp->next;
-            count++;
-        }
-
-        stack<int> st;
-        temp = head;
-        for(int i=0; i<count/2; i++) //add half to stack 
-        {
-            st.push(temp->val);
-            temp = temp->next;
-        }
-
-        if(count%2 != 0) temp = temp->next;
-
-        for(int i=0; i<count/2; i++)
-        {
-            if(st.top() != temp->val) return false;
-            st.pop();
+            if(prev->val != temp->val) return false;
+            prev = prev->next;
             temp = temp->next;
         }
 
