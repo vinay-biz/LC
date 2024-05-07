@@ -40,9 +40,8 @@ public:
             if(temp->next == NULL && carry != 0) {temp->next = new ListNode(carry); break;}
             temp = temp->next;
         }
-
-        ListNode* ans = rev(dum);
-        return ans;
+        temp = rev(dum);
+        return temp;
     }
 
 };
