@@ -2,26 +2,20 @@ class Solution {
 public:
     vector<vector<int>> largestLocal(vector<vector<int>>& grid) {
         int n = grid.size();
+        vector<vector<int>> maxLocal(n - 2, vector<int>(n - 2));
 
-        for(int i = 1; i < n - 1; ++i) {
-            for(int j = 1; j < n - 1; ++j) {
-                int temp = 0;
-
-                for(int k = i - 1; k <= i + 1; ++k) {
-                    for(int l = j - 1; l <= j + 1; ++l) {
-                        temp = max(temp, grid[k][l]);
+        for (int i = 0; i < n - 2; ++i) {
+            for (int j = 0; j < n - 2; ++j) {
+                int max = 0;
+                for (int k = i; k < i + 3; ++k) {
+                    for (int l = j; l < j + 3; ++l) {
+                        max = std::max(max, grid[k][l]);
                     }
                 }
-
-                grid[i - 1][j - 1] = temp;
+                maxLocal[i][j] = max;
             }
         }
 
-        grid.resize(n - 2);
-        for (int i = 0; i < grid.size(); ++i) {
-            grid[i].resize(n - 2);
-        }
-
-        return grid;
+        return maxLocal;
     }
 };
