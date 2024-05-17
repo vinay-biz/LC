@@ -1,1 +1,1 @@
-<h2>delete-node-in-a-bst Notes</h2><hr>[ Time taken: 47 s ]
+<h2>delete-node-in-a-bst Notes</h2><hr>[ Time taken: 58 s ]
