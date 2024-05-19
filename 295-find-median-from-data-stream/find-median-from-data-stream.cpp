@@ -4,7 +4,9 @@ private:
     priority_queue <int, vector<int>, greater<int>> higher; //MinHeap for greater subtree
 public:
     MedianFinder() {
-
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
     }
     
     void addNum(int num) {
