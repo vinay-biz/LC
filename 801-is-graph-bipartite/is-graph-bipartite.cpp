@@ -1,6 +1,12 @@
+
 class Solution {
 public:
+    
+
     bool isBipartite(vector<vector<int>>& graph) {
+        std::ios_base::sync_with_stdio(false);
+std::cout.tie(nullptr);
+std::cin.tie(nullptr);
         vector<int> color(graph.size(), -1);
 
         for(int i=0; i<graph.size(); i++) //Because it's a forest
