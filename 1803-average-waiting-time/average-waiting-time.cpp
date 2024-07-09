@@ -2,6 +2,7 @@ class Solution {
 public:
     double averageWaitingTime(vector<vector<int>>& customers) {
         
+    std::ios_base::sync_with_stdio(false);std::cout.tie(nullptr);std::cin.tie(nullptr);
         long long chefTime = 0;
         long long TotalWaitTime = 0;
 
