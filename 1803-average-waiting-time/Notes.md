@@ -1,1 +1,1 @@
-<h2>average-waiting-time Notes</h2><hr>[ Time taken: 11 s ]
+<h2>average-waiting-time Notes</h2><hr>[ Time taken: 16 s ]
