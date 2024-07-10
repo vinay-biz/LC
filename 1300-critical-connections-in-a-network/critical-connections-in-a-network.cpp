@@ -33,7 +33,7 @@
         vector<vector<int>> criticalConnections(int n, vector<vector<int>>& connections) {
             //Connections is an edge list
             //Lets convert it to adj List
-
+            std::ios_base::sync_with_stdio(false);std::cout.tie(nullptr);std::cin.tie(nullptr);
             vector<vector<int>> G(n);
             for(auto x : connections)
             {
