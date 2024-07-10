@@ -7,7 +7,7 @@ public:
         {
             if(logs[index] == "../")
             { 
-                ans = (ans == 0) ? 0 : ans-1;
+                if(ans > 0) ans--;
             }
             else if(logs[index] == "./") continue;
 
