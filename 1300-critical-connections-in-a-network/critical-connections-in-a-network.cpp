@@ -1,28 +1,27 @@
 class Solution {
-private :
-    int timer = 1; //start the timer
 public:
-    void dfs(vector<vector<int>> &G, int node, int parent, vector<bool> &vis, 
-                vector<int> &times, vector<int> &low, vector<vector<int>> &bridges)
+
+    void dfs(int node, int parent, vector<vector<int>> &G, vector<bool> &vis, 
+             vector<int> &times, vector<int> &low, vector<vector<int>> &bridges, 
+             int &time)
     {
-        vis[node] = true; //mark the node visited
-        times[node] = timer; //set the timer
-        low[node] = timer; //set the lowest time to reach
-        timer++; //increase the timer
+        vis[node] = true; //visit the node
+        times[node] = time; //set it's time of arrival
+        low[node] = time; //also set lowest time of arrival
+        time++; //increment time
 
         for(auto adjNode : G[node])
         {
-            if(adjNode == parent) continue;
+            if(adjNode == parent) continue; //do nothing if it is the parent
 
-            if(!vis[adjNode])
+            if(!vis[adjNode]) //if we have not visited the node
             {
-                dfs(G,adjNode,node,vis,times,low,bridges);
-                low[node] = min(low[node], low[adjNode]);
-                
-                if(low[adjNode] > times[node])
-                {
-                    bridges.push_back({node, adjNode});
-                }
+                dfs(adjNode,node,G,vis,times,low,bridges,time); //dfs it
+                low[node] = min(low[node], low[adjNode]); //Set the lowest time
+
+                //if the lowest time to visit the adjNode is greater than
+                //time of visit of current node, then it is bridge
+                if(low[adjNode] > times[node]) bridges.push_back({node,adjNode});
             }
             else
             {
@@ -31,23 +30,23 @@ public:
         }
     }
     vector<vector<int>> criticalConnections(int n, vector<vector<int>>& connections) {
-        vector<vector<int>> G(n); //Create Adj List from edges
+        //Connections is an edge list
+        //Lets convert it to adj List
 
-        for(int i=0; i<connections.size(); i++)
+        vector<vector<int>> G(n);
+        for(auto x : connections)
         {
-            int u = connections[i][0];
-            int v = connections[i][1];
-
-            G[u].push_back(v);
-            G[v].push_back(u);
+            G[x[0]].push_back(x[1]);
+            G[x[1]].push_back(x[0]);
         }
 
-        vector<bool> vis(n, false); //visited array
-        vector<int> times(n); //Time of reaching a node
-        vector<int> low(n); // Lowest time of reaching a node
-        vector<vector<int>> bridges; //ans array
-        
-        dfs(G,0,0,vis,times,low,bridges); //Call dfs
+        vector<bool> vis(n,false); //vis array
+        vector<int> times(n); //Time of processing of node in DFS
+        vector<int> low(n); //lowest time of adj nodes expect parent
+        vector<vector<int>> bridges; //critical connections or bridges in a graph
+        int time = 1;//current time
+
+        dfs(0,0,G,vis,times,low,bridges,time);
         return bridges;
     }
 };
