@@ -1,27 +1,29 @@
 class Solution {
 public:
-
-    void subsetFind(vector<int> &nums, vector<vector<int>>& result, vector<int> subset,int index)
+    void subsetFind(vector<int>& nums, vector<vector<int>>& res, vector<int>& currSubset,
+                    int currIndex)
     {
-        result.push_back(subset); //push the current subset
+        res.push_back(currSubset); //Add the current subset to ans
 
-        for(int i=index; i<nums.size(); i++)
+        for(int i=currIndex; i < nums.size(); i++)
         {
-            //Take the element
-            subset.push_back(nums[i]);
+            //We include the current element in the subset
+            currSubset.push_back(nums[i]);
 
-            //Call subsetFind
-            subsetFind(nums,result,subset,i+1);
+            //Call subsetFind to add the new subset
+            subsetFind(nums, res, currSubset, i+1);
 
-            //Backtrack
-            subset.pop_back();
+            //BackTrack
+            currSubset.pop_back();
         }
     }
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> result;
-        vector<int> subset; //For storing subsets
+        vector<vector<int>> res;
+        vector<int> currSubset;
+        int currIndex = 0;
+        
+        subsetFind(nums, res, currSubset, currIndex);
 
-        subsetFind(nums, result, subset, 0);
-        return result;
+        return res;
     }
 };
