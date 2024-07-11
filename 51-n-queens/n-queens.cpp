@@ -34,6 +34,7 @@ public:
         }
     }
     vector<vector<string>> solveNQueens(int n) {
+        std::ios_base::sync_with_stdio(false);std::cout.tie(nullptr);std::cin.tie(nullptr);
         vector<vector<string>> ans; //Create ans array
 
         vector<string> board(n); //Create the board
