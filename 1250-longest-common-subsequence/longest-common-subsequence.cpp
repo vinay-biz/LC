@@ -2,6 +2,7 @@ class Solution {
 public:
     
     int longestCommonSubsequence(string text1, string text2) {
+        std::ios_base::sync_with_stdio(false);std::cout.tie(nullptr);std::cin.tie(nullptr);
         int n = text1.length();
         int m = text2.length();
         //Initialize DP array
