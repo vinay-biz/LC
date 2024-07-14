@@ -1,25 +1,33 @@
 class Solution {
 public:
-    int helper(int n, vector<int>& nums, int start, vector<int>& dp)
-    {
-        if(n < start) return 0;
-
-        if(dp[n] != -1) return dp[n];
-
-        int take = nums[n] + helper(n-2, nums, start, dp);
-        int notTake = 0 + helper(n-1, nums, start, dp);
-
-        return dp[n] = max(take, notTake);
-    }
     int rob(vector<int>& nums) {
-        int n = nums.size();
-        if(n == 0) return 0;
-        if(n == 1) return nums[0];
+        int n = nums.size(); if(n == 0) return 0; if(n == 1) return nums[0];
+        vector<int> dp(n,-1); int take,notTake;
 
-        vector<int> dp(n,-1);
-        int val1 = helper(n-2, nums, 0, dp);
+        dp[0] = nums[0];
+        
+        for(int i=1; i<n-1; i++)
+        {
+            take =  nums[i]; if(i >= 2) take += dp[i-2];
+            notTake = 0 + dp[i-1];
+
+            dp[i] = max(take, notTake);
+        }
+        int val1 = dp[n-2];
+
         dp = vector<int> (n,-1);
-        int val2 = helper(n-1, nums, 1, dp);
+    
+        dp[1] = nums[1];
+
+        for(int i=2; i<n; i++)
+        {
+            take = nums[i]; if(i >= 3) take += dp[i-2];
+            notTake = 0 + dp[i-1];
+
+            dp[i] = max(take, notTake);
+        }
+        int val2 = dp[n-1];
+        
         return max(val1,val2);
     }
 };
