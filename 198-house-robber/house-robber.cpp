@@ -12,7 +12,20 @@ public:
         return dp[n] = max(take, notTake);
     }
     int rob(vector<int>& nums) {
-        vector<int> dp(nums.size(), -1);
-        return helper(nums, nums.size()-1, dp);
+        int n = nums.size();
+        vector<int> dp(n, -1);
+
+        dp[0] = nums[0];
+
+        int take, notTake;
+        for(int i = 1; i < n; i++)
+        {
+            take = nums[i];
+            if(i > 1) take += dp[i-2];
+            notTake = 0 + dp[i-1];
+
+            dp[i] = max(take , notTake); 
+        }
+        return dp[n-1];
     }
 };
