@@ -1,22 +1,19 @@
 class Solution {
 public:
+    int helper(vector<int>& nums, int n, vector<int>& dp)
+    {
+        if(n < 0) return 0;
+        if(n == 0) return nums[0];
+
+        if(dp[n] != -1) return dp[n];
+
+        int take = helper(nums, n-2, dp) + nums[n];
+        int notTake = helper(nums, n-1, dp) + 0;
+
+        return dp[n] = max(take, notTake);
+    }
     int rob(vector<int>& nums) {
-        int n = nums.size();
-        if(n == 1) return nums[0]; //edge case
-        vector<int> dp(n,0);
-        
-        dp[0] = nums[0];
-        dp[1] = nums[1];
-
-        int left, right;
-        for(int i=2; i<n; i++)
-        {   
-            left = (i >= 2) ? dp[i-2] : 0;
-            right = (i >= 3) ? dp[i-3] : 0;
-
-            dp[i] = max(left, right) + nums[i];
-        }
-
-        return max(dp[n-1], dp[n-2]);
+        vector<int> dp(nums.size(), -1);
+        return helper(nums, nums.size()-1, dp);
     }
 };
