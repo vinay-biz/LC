@@ -5,8 +5,6 @@ public:
         int m = obstacleGrid[0].size();
 
         if(obstacleGrid[0][0] == 1 || obstacleGrid[n-1][m-1] == 1) return 0;
-        //vector<vector<int>> dp(n, vector<int> (m,-1));
-        //dp[0][0] = 1;
 
         vector<int> prev(m,0);
         vector<int> curr(m,0); curr[0] = 1;
