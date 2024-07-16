@@ -1,29 +1,30 @@
 class Solution {
 public:
-    int helper(vector<vector<int>>& matrix, int n, int row, int col, vector<vector<int>>& dp)
-    {
-        if(col < 0 || col >= n) return 1e9;
-        if(dp[row][col] != -1e9) return dp[row][col];
-        if(row == 0) return matrix[row][col];
-
-        int up = matrix[row][col] + helper(matrix,n,row-1,col,dp);
-        int left = matrix[row][col] + helper(matrix,n,row-1,col-1,dp);
-        int right = matrix[row][col] + helper(matrix,n,row-1,col+1,dp);
-
-        return dp[row][col] = min(min(up,left),right);
-    }
-    int minFallingPathSum(vector<vector<int>>& matrix) {
-        int n = matrix.size();
-        int ans = 1e9;
-
+   int minFallingPathSum(vector<vector<int>>& matrix) {
+        int n = matrix.size(); int ans = 1e9;
         vector<vector<int>> dp(n, vector<int> (n,-1e9));
 
-        for(int i=0; i<n; i++)
+        for(int i=0; i<n; i++) dp[0][i] = matrix[0][i];
+
+        for(int i=1; i<n; i++)
         {
-            int temp = helper(matrix, n, n-1, i, dp);
-            ans = min(ans, temp);
+            for(int j=0; j<n; j++)
+            {
+                int up = matrix[i][j] + dp[i-1][j];
+
+                int left = matrix[i][j];
+                if(j > 0) left += dp[i-1][j-1];
+                else left += 1e9;
+
+                int right = matrix[i][j];
+                if(j < n - 1) right +=  dp[i-1][j+1];
+                else right += 1e9;
+
+                dp[i][j] = min(min(left,right),up);
+            }
         }
 
+        for(int i=0; i<n; i++) ans = min(ans, dp[n-1][i]);
         return ans;
     }
 };
