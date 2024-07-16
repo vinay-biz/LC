@@ -2,7 +2,7 @@ class Solution {
 public:
     int helper(vector<vector<int>>& matrix, int n, int row, int col, vector<vector<int>>& dp)
     {
-        if(col < 0 || col >= n) return 1011111;
+        if(col < 0 || col >= n) return 1e9;
         if(dp[row][col] != -1e9) return dp[row][col];
         if(row == 0) return matrix[row][col];
 
