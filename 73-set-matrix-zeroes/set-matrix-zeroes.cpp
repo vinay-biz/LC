@@ -1,6 +1,9 @@
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int col0 = 1;
 
         //Set the boundary
