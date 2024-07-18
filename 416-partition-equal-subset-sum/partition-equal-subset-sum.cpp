@@ -1,27 +1,25 @@
 class Solution {
 public:
-    bool helper(vector<int>& nums, int n, int target, vector<vector<int>>& dp)
-    {
-        if(target == 0) return true;
-        if(n == 0) return (nums[0] == target);
-
-        if(dp[n][target] != -1) return dp[n][target];
-
-        bool notTake = helper(nums, n-1, target,dp);
-        bool take = false;
-        if(target >= nums[n]) take = helper(nums, n-1, target - nums[n],dp);
-
-        return dp[n][target] = (take || notTake);
-    }
     bool canPartition(vector<int>& nums) {
-        int n = nums.size();
-        int target = 0; for(int i=0; i<n; i++) target += nums[i];
+        int n = nums.size(); int sum = 0;
+        if(n == 1) return false; 
+        //If the array sum is odd, it cannot be divied into two equals
+        for(int i=0; i<n; i++) sum += nums[i]; if(sum%2 == 1) return false; else sum = sum/2;
+        vector<vector<bool>> dp(n, vector<bool> (sum+1, false));
 
-        if(target%2 == 1) return false;
-        else target = target/2;
+        for(int i=0; i<n; i++) dp[i][0] = true; //Base case 1
+        if(nums[0] <= sum) dp[0][nums[0]] = true;
 
-        vector<vector<int>> dp(n, vector<int> (target+1, -1));
+        for(int i = 1; i < n; i++) {
+            for(int j = 1; j <= sum; j++) {
+                bool notTake = dp[i-1][j];
+                bool take = false;
+                if(nums[i] <= j) take = dp[i-1][j-nums[i]];
 
-        return helper(nums, n-1, target, dp);
+                dp[i][j] = (take ||notTake);
+            }
+        }
+
+        return dp[n-1][sum];
     }
 };
