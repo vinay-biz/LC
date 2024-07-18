@@ -5,7 +5,7 @@ public:
         
         for(int i=0; i<n; i++) sum += nums[i]; if(sum%2 == 1) return false; else sum = sum/2;
         vector<bool> prev(sum+1, false), curr(sum+1, false);
-        prev[0]  =  true; //Base case 1
+        prev[0] = true; //Base case 1
         if(nums[0] <= sum) prev[nums[0]] = true; //Base case 2
 
         for(int i = 1; i < n; i++) {
