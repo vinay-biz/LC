@@ -1,32 +1,25 @@
 class Solution {
 public:
-    int helper(vector<int>& coins, int n, int amt, vector<int>& dp)
-    {
-        if(amt == 0) return 0;
-
-        int res = 1e9;
-
-        if(dp[amt] != -1) return dp[amt];
-
-        for(int i=0; i<coins.size(); i++)
-        {
-            if(coins[i] <= amt)
-            {
-                int temp = 1 + helper(coins, n, amt - coins[i], dp);
-                
-                res = min(res, temp);
-            }
-        }
-
-        return dp[amt] = res;
-    }
+    
 
 
     int coinChange(vector<int>& coins, int amount) {
-        int n = coins.size();
-        vector<int> dp(amount+1, -1);
-        int ans = helper(coins, n-1, amount, dp);
-        if(ans == 1e9) return -1;
-        return ans;
+        vector<int> dp(amount+1, 1e9);
+        dp[0] = 0;
+
+        for(int i=1; i<=amount; i++)
+        {
+            for(int j=0; j<coins.size(); j++)
+            {
+                if(coins[j] <= i)
+                {
+                    int temp = 1 + dp[i - coins[j]];
+                    dp[i] = min(dp[i], temp);
+                }
+            }
+        }
+
+        if(dp[amount] == 1e9 ) return -1;
+        return dp[amount];
     }
 };
