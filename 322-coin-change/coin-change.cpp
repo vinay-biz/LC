@@ -2,7 +2,7 @@ class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
         int n = coins.size();
-        vector<int> prev(amount+1, 1e9), curr(amount+1, 1e9);
+        vector<int> prev(amount+1, 1e9);
 
         prev[0] = 0;
 
@@ -17,11 +17,10 @@ public:
             {
                 int notTake = 0 + prev[j];
                 int take = 1e9;
-                if(coins[i] <= j) take = 1 + curr[j - coins[i]];
+                if(coins[i] <= j) take = 1 + prev[j - coins[i]];
 
-                curr[j] = min(take, notTake);
+                prev[j] = min(take, notTake);
             }
-            prev = curr;
         }
 
         if(prev[amount] == 1e9) return -1;
