@@ -1,27 +1,31 @@
 class Solution {
 public:
-    int helper(vector<int>& coins, int n, int amount, vector<vector<int>>& dp)
+    int helper(vector<int>& coins, int n, int amt, vector<int>& dp)
     {
-        if(amount == 0) return 0;
-        if(n == 0)
+        if(amt == 0) return 0;
+
+        int res = 1e9;
+
+        if(dp[amt] != -1) return dp[amt];
+
+        for(int i=0; i<coins.size(); i++)
         {
-            if(amount%coins[0] == 0) return amount/coins[0];
-            return 1e9; 
+            if(coins[i] <= amt)
+            {
+                int temp = 1 + helper(coins, n, amt - coins[i], dp);
+                
+                res = min(res, temp);
+            }
         }
 
-        if(dp[n][amount] != -1) return dp[n][amount];
-
-        int notTake = 0 + helper(coins, n-1, amount, dp);
-        int take = 1e9;
-        if(coins[n] <= amount) take = 1+helper(coins, n, amount - coins[n], dp);
-
-        return dp[n][amount] = min(take, notTake);
+        return dp[amt] = res;
     }
+
+
     int coinChange(vector<int>& coins, int amount) {
-        int n = coins.size()-1;
-        vector<vector<int>> dp(n+1, vector<int> (amount+1, -1));
-        int ans =  helper(coins, n, amount, dp);
-        
+        int n = coins.size();
+        vector<int> dp(amount+1, -1);
+        int ans = helper(coins, n-1, amount, dp);
         if(ans == 1e9) return -1;
         return ans;
     }
