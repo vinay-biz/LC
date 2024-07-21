@@ -10,7 +10,7 @@ public:
         if( nums[0] != 0 && nums[0] <= sum) prev[nums[0]] = 1;
 
         for(int i=1; i<n; i++){
-            for(int j=0; j<=sum; j++){
+            for(int j=sum; j>=0; j--){
                 int notTake = prev[j];
                 int take = 0;
                 if(nums[i] <= j) take = prev[j-nums[i]];
