@@ -1,15 +1,12 @@
 class Solution {
 public:
     int change(int t, vector<int>& coins) {
-        vector<int> dp(t+1,0); for(int i=0; i<=t; i++) dp[i] = (i%coins[0] == 0);
+        vector<int> dp(t + 1, 0);
+        dp[0] = 1; // There is one way to make amount 0, that is using no coins.
 
-        for(int i=1; i<coins.size(); i++){
-            for(int j=0; j<=t; j++){
-                int notTake = dp[j];
-                int take = 0;
-                if(coins[i] <= j) take = dp[j - coins[i]];
-
-                dp[j] = take + notTake;
+        for(int coin : coins) {
+            for(int j = coin; j <= t; j++) {
+                dp[j] += dp[j - coin];
             }
         }
         return dp[t];
