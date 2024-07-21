@@ -15,9 +15,8 @@ public:
                 int take = 0;
                 if(nums[i] <= j) take = prev[j-nums[i]];
 
-                curr[j] = take + notTake;
+                prev[j] = take + notTake;
             }
-            prev = curr;
         }
         return prev[sum];
     }
