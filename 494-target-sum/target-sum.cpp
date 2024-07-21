@@ -23,7 +23,7 @@ public:
 
         int sum;
         if((totSum - target)%2 != 0) return 0;
-         
+
         if(totSum-target >= 0) sum = (totSum - target)/2;
         else return 0;
 
