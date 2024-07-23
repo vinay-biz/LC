@@ -1,6 +1,9 @@
 class Solution {
 public:
     int minDistance(string word1, string word2) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int n = word1.size();
         int m = word2.size();
 
