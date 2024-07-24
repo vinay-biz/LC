@@ -12,11 +12,10 @@ public:
             {
                 if(s[i-1] == t[j-1]) {
                     if(prev[j-1] <= INT_MAX - prev[j]) 
-                    curr[j] = prev[j-1] + prev[j];
+                    prev[j] = prev[j-1] + prev[j];
                 }
-                else curr[j] = prev[j];
+                else prev[j] = prev[j];
             }
-            prev = curr;
         } 
 
         return prev[m];
