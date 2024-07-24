@@ -1,6 +1,9 @@
 class Solution {
 public:
     int numDistinct(string s, string t) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int n = s.length(), m = t.length(); vector<int> dp(m+1,0); dp[0] = 1; 
 
         for(int i=1; i<=n; i++){
