@@ -1,31 +1,29 @@
 class Solution {
 public:
-    bool helper(string& s, string& p, int n, int m, vector<vector<int>>& dp)
-    {
-        if(m < 0){
-            if(n < 0) return true;
-            return false; }
-        if(n < 0){
-            for(int i=m; i>=0; i--)
-            {
-                if(p[i] != '*' ) return false;
-            }
-            return true;
-        }
-            
-        if(dp[n][m] != -1) return dp[n][m];
-
-        if(s[n] == p[m] || p[m] == '?') return dp[n][m] = helper(s, p, n-1, m-1, dp);
-
-        if(p[m] == '*') return dp[n][m] = (helper(s, p, n-1, m, dp) || helper(s, p, n, m-1, dp));
-
-        return dp[n][m] = false;
-    }
-
     bool isMatch(string s, string p) {
-        int n = s.size();
-        int m = p.size();
-        vector<vector<int>> dp(n, vector<int> (m,-1));
-        return helper(s, p, n-1, m-1, dp);
+        int n = s.size(),  m = p.size();
+        vector<vector<bool>> dp(n+1, vector<bool> (m+1,false));
+        dp[0][0] = true; //BC1
+        for(int j=1; j<=m; j++) //BC2
+        {
+            bool flag = true;
+            for(int i=1; i<=j; i++)
+            {
+                if(p[i-1] != '*') {flag = false; break;}
+            }
+            dp[0][j] = flag;
+        }
+
+        for(int i=1; i<=n; i++)
+        {
+            for(int j=1; j<=m; j++)
+            {
+                if(s[i-1] == p[j-1] || p[j-1] == '?') dp[i][j] = dp[i-1][j-1];
+                else if(p[j-1] == '*') dp[i][j] = (dp[i-1][j] || dp[i][j-1]);
+                else dp[i][j] = false;
+            }
+        }
+
+        return dp[n][m];
     }
 };
