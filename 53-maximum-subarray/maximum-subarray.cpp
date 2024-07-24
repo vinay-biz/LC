@@ -5,11 +5,9 @@ public:
 
         for(int i=0; i < nums.size(); i++)
         {
-            currSum += nums[i];
+            currSum  = max(nums[i], currSum +nums[i]);
 
             maxi = max(maxi, currSum);
-
-            if(currSum < 0) currSum = 0;
         }
         return maxi;
     }
