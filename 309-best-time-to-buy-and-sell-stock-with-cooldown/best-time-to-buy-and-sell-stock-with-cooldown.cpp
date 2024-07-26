@@ -14,7 +14,25 @@ public:
         return dp[n][curr] = max(max(buy,sell),none);
     }
     int maxProfit(vector<int>& price) {
-        int n = price.size(); vector<vector<int>> dp(n, vector<int> (2, -1));
-        return helper(price, 0, 0, dp);
+        int n = price.size(); vector<vector<int>> dp(n+1, vector<int> (2, 0));
+
+        for(int i = n-1; i >= 0; i--)
+        {
+            for(int j = 1; j >= 0; j--)
+            {
+                int buy = 0, sell = 0;
+                if(!j) buy = dp[i+1][!j] - price[i];
+                
+                if(j) {
+                    if(i+2 < n) sell = dp[i+2][!j] + price[i];
+                    else sell = 0 + price[i];
+                }
+
+                int none = dp[i+1][j];
+
+                dp[i][j] = max(max(buy,sell),none);
+            }
+        }
+        return dp[0][0];
     }
 };
