@@ -28,6 +28,9 @@ public:
         return s1.size() < s2.size();
     }
     int longestStrChain(vector<string>& words) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int n = words.size();
         vector<int> dp(n,1);
         int ans = 1;
