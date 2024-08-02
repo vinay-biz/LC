@@ -7,7 +7,7 @@ public:
         for(int i=0; i<heights.size(); i++)
         {
             int idx = i;
-            while(!st.empty() && st.top().first > heights[i])
+            while(!st.empty() && st.top().first >= heights[i])
             {
                 pair<int,int> p = st.top();
                 st.pop();
