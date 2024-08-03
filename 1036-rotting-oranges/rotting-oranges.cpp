@@ -1,6 +1,9 @@
 class Solution {
 public:
     int orangesRotting(vector<vector<int>>& grid) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int m = grid.size();
         int n = grid[0].size();
 
