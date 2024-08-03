@@ -17,7 +17,7 @@ public:
         }
 
         if(freshCount == 0) return 0;
-        
+
         while(!q.empty())
         {
             int sz = q.size();
@@ -59,7 +59,7 @@ public:
             minutes++;
         }
 
-        if(freshCount <= 0) return minutes-1;
+        if(freshCount == 0) return minutes-1;
         return -1;
     }
 };
