@@ -1,16 +1,8 @@
 class Solution {
 public:
     int orangesRotting(vector<vector<int>>& grid) {
-        std::ios_base::sync_with_stdio(false);
-        std::cout.tie(nullptr);
-        std::cin.tie(nullptr);
-        int m = grid.size();
-        int n = grid[0].size();
-
-        int freshCount = 0;
+        int m = grid.size(), n = grid[0].size(), freshCount = 0, minutes = 0;
         queue<pair<int,int>> q;
-
-        int minutes = 0;
 
         for(int i=0; i<m; i++) {
             for(int j=0; j<n; j++) {
@@ -18,8 +10,10 @@ public:
                 if(grid[i][j] == 2) q.push({i, j});
             }
         }
-
         if(freshCount == 0) return 0;
+
+        int a[] = {1, -1, 0, 0};
+        int b[] = {0 , 0, 1, -1};
 
         while(!q.empty())
         {
@@ -29,34 +23,19 @@ public:
                 int x = q.front().first, y = q.front().second;
                 q.pop();
 
+                for(int i=0; i<4; i++)
+                {
+                    int nx = x + a[i];
+                    int ny = y + b[i];
 
-                if(x!=0 && grid[x-1][y] == 1)
-                {
-                    grid[x-1][y] = 2;
-                    q.push({x-1, y});
+                    if(nx < 0 || nx >= m || ny < 0 || ny >= n || grid[nx][ny] != 1)
+                    continue;
+
+                    grid[nx][ny] = 2;
+                    q.push({nx,ny});
                     freshCount--;
                 }
-                
-                if(x!=m-1 && grid[x+1][y] == 1)
-                {
-                    grid[x+1][y] = 2;
-                    q.push({x+1, y});
-                    freshCount--;
-                }
-                
-                if(y!=0 && grid[x][y-1] == 1)
-                {
-                    grid[x][y-1] = 2;
-                    q.push({x, y-1});
-                    freshCount--;
-                }
-                
-                if(y!=n-1 && grid[x][y+1] == 1)
-                {
-                    grid[x][y+1] = 2;
-                    q.push({x, y+1});
-                    freshCount--;
-                }
+               
             }
             
             minutes++;
