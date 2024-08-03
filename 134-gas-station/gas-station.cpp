@@ -1,6 +1,9 @@
 class Solution {
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int fuelReq = 0; //To tell if we can ever reach
         int tank = 0; //To check where it becomes postitve, and dosen't go -ve again
         int start = 0;
