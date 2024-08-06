@@ -32,7 +32,7 @@ public:
              
             pq.pop();
 
-            if(kVal > k) continue;
+            if(kVal > k) break;
 
             for(auto adj : graph[node])
             {
