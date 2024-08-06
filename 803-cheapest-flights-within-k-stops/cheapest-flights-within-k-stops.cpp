@@ -1,39 +1,50 @@
+#define INF 1e9
 class Solution {
 public:
-    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
-        vector<pair<int,int>>adj[n];
-        for(auto it:flights)
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        vector<vector<vector<int>>> graph(n); //create a adj list out of the edges
+
+        for(int i=0; i < flights.size(); i++)
         {
-            adj[it[0]].push_back({it[1],it[2]});
+            int u = flights[i][0];
+            int v = flights[i][1];
+            int w = flights[i][2];
+
+            graph[u].push_back({v,w});
         }
-        queue<pair<int,pair<int,int>>>q;
-            // {stops, {node, distance}}
-        q.push({0,{src,0}});
-        vector<int>dist(n,INT_MAX);
-        dist[src]=0;
-        while(!q.empty())
+
+        vector<int> dist(n,INF); //distance array
+        queue <vector<int>> pq; //wt, node, k    
+
+        pq.push({0 ,src, 0});
+        dist[src] = 0; //distance of src from itself is 0
+
+        while(!pq.empty())
         {
-            auto it=q.front();
-            q.pop();
-            int stops=it.first;
-            int node=it.second.first;
-            int weight=it.second.second;
-            if(stops>K)
-                continue;
-            for(auto i:adj[node])
+            vector<int> it = pq.front();
+
+            int currDist = it[0];
+            int node = it[1];
+            int kVal = it[2];
+             
+            pq.pop();
+
+            if(kVal > k) continue;
+
+            for(auto adj : graph[node])
             {
-                int adjNode=i.first;
-                int adjWt=i.second;
-                if(weight+adjWt<dist[adjNode])
+                int adjNode = adj[0];
+                int adjDist = adj[1];
+
+                if((currDist + adjDist) < dist[adjNode]) //incase we found a better route
                 {
-                    q.push({stops+1,{adjNode,weight+adjWt}});
-                    dist[adjNode]=weight+adjWt;
+                    dist[adjNode] = currDist + adjDist;
+                    pq.push({dist[adjNode], adjNode, kVal + 1});
                 }
             }
         }
-            // destination do not reached under k stops
-        if(dist[dst]==INT_MAX)
-            return -1;
+
+        if(dist[dst] == INF) return -1;
         return dist[dst];
-    }
+        }
 };
