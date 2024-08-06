@@ -2,6 +2,9 @@
 class Solution {
 public:
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         vector<vector<vector<int>>> graph(n); //create a adj list out of the edges
 
         for(int i=0; i < flights.size(); i++)
