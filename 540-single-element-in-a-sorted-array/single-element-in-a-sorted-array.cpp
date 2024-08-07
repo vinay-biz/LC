@@ -7,26 +7,19 @@ public:
         int l = 0;
         int r = nums.size()-1;
 
-        while(l <= r)
+        while(l < r)
         {
             int mid = (l+r)/2;
 
-            if( ((mid == 0) || nums[mid-1] != nums[mid]) && (mid == nums.size()-1 || nums[mid+1] != nums[mid]))
-            {
-                return nums[mid];
-            }
+            if(mid%2 != 0) mid--;
 
-            if((mid%2 == 0 && (mid == 0 || nums[mid-1] != nums[mid])) || (mid%2 != 0 && nums[mid-1] == nums[mid]))
-            {
-                l = mid+1;
-            }
-            else
-            {
-                r = mid-1;
-            }
+            if(nums[mid] == nums[mid+1])
+            l = mid + 2;
+
+            else r = mid;
         }
 
-        return -1;
+        return nums[r];
 
     }
 };
