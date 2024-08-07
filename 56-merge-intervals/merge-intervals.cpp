@@ -4,12 +4,11 @@ public:
         std::ios_base::sync_with_stdio(false);
         std::cout.tie(nullptr);
         std::cin.tie(nullptr);
-        int n = intervals.size();
         sort(intervals.begin(), intervals.end());
         
         vector<vector<int>> ans;
 
-        for(int i=0; i < n; i++)
+        for(int i=0; i < intervals.size(); i++)
         {
             if(ans.empty()) ans.push_back(intervals[i]);
             else
