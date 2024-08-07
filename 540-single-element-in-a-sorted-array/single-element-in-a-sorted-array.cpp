@@ -1,8 +1,9 @@
 class Solution {
 public:
     int singleNonDuplicate(vector<int>& nums) {
-        //first one should be even indexed
-        //second one should be odd indexed
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
 
         int l = 0;
         int r = nums.size()-1;
