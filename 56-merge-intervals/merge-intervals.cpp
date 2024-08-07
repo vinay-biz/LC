@@ -3,23 +3,21 @@ public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         sort(intervals.begin(), intervals.end());
         
-        int currTime = intervals[0][1];
+        vector<vector<int>> ans;
 
-        for(int i=1; i < intervals.size(); i++)
+        for(int i=0; i < intervals.size(); i++)
         {
-            if(intervals[i][0] <= currTime) //Incase the times are overlapping
-            {
-                intervals[i-1][1] = max(intervals[i-1][1],intervals[i][1]); //merge or increase end time of perv
-                intervals.erase(intervals.begin()+i);
-                i--;
-                currTime = intervals[i][1];
-            }
+            if(ans.empty()) ans.push_back(intervals[i]);
             else
             {
-                currTime = intervals[i][1];            
+                vector<int>&v = ans.back();
+                int y = v[1];
+
+                if(intervals[i][0] <= y) v[1] = max(y, intervals[i][1]);
+                else ans.push_back(intervals[i]);
             }
         }
 
-        return intervals;
+        return ans;
     }
 };
