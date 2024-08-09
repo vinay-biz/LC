@@ -1,6 +1,9 @@
 class Solution {
 public:
     int numMagicSquaresInside(vector<vector<int>>& grid) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int n = grid.size(), m = grid[0].size(), ans = 0;
         vector<bool> vis(10, false);
 
