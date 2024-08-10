@@ -9,6 +9,6 @@ public:
             mp[nums[i]]++;
         }
 
-        return -1;
+        return 0;
     }
 };
