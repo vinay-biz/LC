@@ -1,7 +1,6 @@
 class Solution {
 public:
-    void dfs(vector<vector<int>>& grid, int i, int j)
-    {
+    void dfs(vector<vector<int>>& grid, int i, int j){
         if(i<0 || j<0 || i>=grid.size() || j >= grid[0].size() || grid[i][j] != 1) return;
         grid[i][j] = '2';
         dfs(grid, i+1, j);
@@ -9,6 +8,7 @@ public:
         dfs(grid, i, j+1);
         dfs(grid, i, j-1);
     }
+
     int numberOfIslands(vector<vector<int>>& grid) {
         int ans = 0;
         vector<vector<int>> grid2 = grid;
@@ -23,6 +23,9 @@ public:
         return ans;
     }
     int minDays(vector<vector<int>>& grid) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int num = numberOfIslands(grid);
         if(num != 1) return 0;
 
