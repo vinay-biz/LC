@@ -10,25 +10,14 @@ public:
         
         for(int i=0; i<nums.size(); i++)
         {
-            if(pq.empty() || pq.size()  < k) pq.push(nums[i]);
-
-            else if(pq.size() == k && nums[i] > pq.top())
-            {
-                pq.pop();
-                pq.push(nums[i]);
-            }
+            pq.push(nums[i]);
+            if(pq.size() > k) pq.pop();
         }
     }
     
     int add(int val) {
-        if(pq.empty() || pq.size()  < sz) pq.push(val);
-
-        else if(pq.size() == sz && val > pq.top())
-        {
-            pq.pop();
-            pq.push(val);
-        }
-
+        pq.push(val);
+        if(pq.size() > sz) pq.pop();
         return pq.top();
     }
 };
