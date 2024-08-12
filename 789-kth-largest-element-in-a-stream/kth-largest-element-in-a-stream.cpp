@@ -3,7 +3,11 @@ class KthLargest {
     int sz;
 public:
     KthLargest(int k, vector<int>& nums) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         sz = k;
+        
         for(int i=0; i<nums.size(); i++)
         {
             if(pq.empty() || pq.size()  < k) pq.push(nums[i]);
