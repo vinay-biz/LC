@@ -2,8 +2,6 @@ class Solution {
 public:
     void helper(vector<int>& arr, int k , int sum, int i, vector<int>& curr, vector<vector<int>>& ans)
     {
-        if(sum < 0) return;
-
         if(sum == 0)
         {
             if(curr.size() == k) ans.push_back(curr);
