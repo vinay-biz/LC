@@ -20,6 +20,9 @@ public:
         }
     }
     vector<vector<int>> combinationSum(vector<int>& nums, int sum) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         vector<vector<int>> ans;
         vector<int> curr;
 
