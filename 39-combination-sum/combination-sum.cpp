@@ -1,25 +1,28 @@
 class Solution {
 public:
-    void helper(vector<int>& arr, int sum, int i, vector<int> curr, vector<vector<int>>& ans)
-    {
-        if(i == arr.size() || sum < 0) return;
-        if(sum == 0) 
-        {
-            ans.push_back(curr);
-            return;
+    void solve(vector<int>&cand, int n, int i, int tar, vector<vector<int>>&ans, vector<int>&res){
+        if(tar == 0){
+            ans.push_back(res) ;
+            return ;
         }
 
-        helper(arr, sum , i+1, curr, ans);
-        curr.push_back(arr[i]);
-        helper(arr, sum - arr[i], i, curr, ans);
+        if(i == n) return ;
+
+        for(int idx = i; idx<n; idx++){
+            if(tar >= cand[idx]){
+                res.push_back(cand[idx]) ;
+                solve(cand, n, idx, tar-cand[idx], ans, res) ;
+                res.pop_back() ;
+            }
+        }
     }
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        vector<vector<int>> ans;
-        vector<int> curr;
 
-        sort(candidates.begin(), candidates.end());
+    vector<vector<int>> combinationSum(vector<int>& cand, int tar) {
+        int n = cand.size() ;
+        vector<vector<int>>ans ;
+        vector<int>res ;
+        solve(cand, n, 0, tar, ans, res) ;
 
-        helper(candidates, target, 0, curr, ans);
-        return ans;
+        return ans ;
     }
 };
