@@ -1,20 +1,20 @@
 class Solution {
 public:
-    int numTrees(int N) {
+    int numTrees(int n) {
         vector<int> dp(20, 0);
         dp[0] = 1;
         dp[1] = 1;
         dp[2] = 2;
 
-        for(int n = 3; n <= N; n++)
+        for(int i = 3; i <= n; i++)
         {
             int ans = 0;
-            for(int i=1; i <= n; i++) 
+            for(int j=1; j <= i; j++) 
             {
-                ans = ans + dp[i-1] * dp[n-i];
+                ans += dp[j-1] * dp[i-j];
             }
-            dp[n] = ans;
+            dp[i] = ans;
         }
-        return dp[N];
+        return dp[n];
     }
 };
