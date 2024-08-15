@@ -4,28 +4,31 @@ public:
         std::ios_base::sync_with_stdio(false);
         std::cout.tie(nullptr);
         std::cin.tie(nullptr);
-        vector<int> change(3, 0);
 
-        for(int i=0; i<bills.size(); i++) {
-            if(bills[i] == 5) change[0]++;
+        int count5 = 0;
+        int count10 = 0;
+        int count20 = 0;
 
-            else if(bills[i] == 10 && change[0] > 0)
+        for(auto bill : bills) {
+            if(bill == 5) count5++;
+
+            else if(bill == 10 && count5 > 0)
             {
-                change[1]++;
-                change[0]--;
+                count10++;
+                count5--;
             } 
 
-            else if(bills[i] == 20 && ((change[0] > 0 && change[1] > 0) || change[0] > 2))
+            else if(bill == 20 && ((count5 > 0 && count10 > 0) || count5 > 2))
             {
-                change[2]++;
+                count20++;
 
-                if(change[1] > 0)
+                if(count10 > 0)
                 {
-                    change[1]--;
-                    change[0]--;
+                    count10--;
+                    count5--;
                 }
 
-                else change[0] -= 3;
+                else count5 -= 3;
             }
 
             else return false;
