@@ -1,29 +1,23 @@
 class Solution {
 public:
-    string expand(int i, int j, string s)
-    {
-        int left = i;
-        int right = j;
-
-        while(left >=0 && right < s.size() && s[left] == s[right])
-        {
-            left--;
-            right++;
-        }
-
-        return s.substr(left + 1, right - left - 1);
-    }
     string longestPalindrome(string s) {
-        std::ios_base::sync_with_stdio(false);
-        std::cout.tie(nullptr);
-        std::cin.tie(nullptr);
         string ans = "";
 
         for(int i = 0; i < s.size(); i++) {
-            string odd = expand(i, i, s);
+            int l = i, r = i;
+            while(l >= 0 && r < s.size() && s[l] == s[r]){
+                l--;
+                r++;
+            }
+            string odd = s.substr(l+1, r-l-1);
             if(odd.size() > ans.size()) ans = odd;
 
-            string even = expand(i, i+1, s);
+            l = i;r = i+1;
+            while(l >= 0 && r < s.size() && s[l] == s[r]) {
+                l--;
+                r++;
+            }
+            string even = s.substr(l+1, r-l-1);
             if(even.size() > ans.size()) ans = even;
         }
 
