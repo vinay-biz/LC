@@ -1,6 +1,9 @@
 class Solution {
 public:
     bool lemonadeChange(vector<int>& bills) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         vector<int> change(3, 0);
 
         for(int i=0; i<bills.size(); i++) {
