@@ -35,9 +35,7 @@ public:
         helper(root->right);
     }
     Node* connect(Node* root) {
-        std::ios_base::sync_with_stdio(false);
-        std::cout.tie(nullptr);
-        std::cin.tie(nullptr);
+        
         if(root == NULL) return NULL;
         root->next = NULL;
         helper(root);
