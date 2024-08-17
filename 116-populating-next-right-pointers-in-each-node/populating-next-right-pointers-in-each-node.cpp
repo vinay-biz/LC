@@ -18,34 +18,26 @@ public:
 
 class Solution {
 public:
-    Node* connect(Node* root) {
-        if(root == NULL) return root;
-        queue<Node*> q;
-        q.push(root);
+    void helper(Node* root)
+    {
+        if(root == NULL) return; //Base case
 
-        while(!q.empty())
-        {
-            int n = q.size();
-
-            for(int i=0; i<n; i++)
-            {
-                Node* node = q.front();
-                q.pop();
-
-                if(i == n-1)
-                {
-                    node->next = NULL;
-                }
-                else
-                {
-                    node->next = q.front();
-                }
-
-                if(node->left) q.push(node->left);
-                if(node->right) q.push(node->right);
-            }
+        if(root->left) {  //If left exists right also exits
+            root->left->next = root->right;
+            
+            if(root->next != NULL) //If its not a corner root its right exists  
+                root->right->next = root->next->left;
+            else
+                root->right->next = NULL;
         }
 
+        helper(root->left);
+        helper(root->right);
+    }
+    Node* connect(Node* root) {
+        if(root == NULL) return NULL;
+        root->next = NULL;
+        helper(root);
         return root;
     }
 };
