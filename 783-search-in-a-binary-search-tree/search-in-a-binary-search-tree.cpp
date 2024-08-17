@@ -11,7 +11,8 @@
  */
 class Solution {
 public:
-    TreeNode* solve(TreeNode* node, int val)
+
+    TreeNode* searchBST(TreeNode* node, int val) 
     {
         if(node==NULL)
         return NULL;
@@ -20,13 +21,8 @@ public:
         return node;
 
         if(val < node->val)
-        return solve(node->left,val);
+        return searchBST(node->left,val);
 
-        return solve(node->right,val);
-    }
-
-    TreeNode* searchBST(TreeNode* root, int val) 
-    {
-        return solve(root,val);    
+        return searchBST(node->right,val); 
     }
 };
