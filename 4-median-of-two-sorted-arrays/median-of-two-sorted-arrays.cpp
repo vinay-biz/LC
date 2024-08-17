@@ -1,6 +1,9 @@
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& a, vector<int>& b) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int n1 = a.size();
         int n2 = b.size();
 
