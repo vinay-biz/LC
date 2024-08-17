@@ -1,9 +1,6 @@
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& a, vector<int>& b) {
-        std::ios_base::sync_with_stdio(false);
-        std::cout.tie(nullptr);
-        std::cin.tie(nullptr);
         int n1 = a.size();
         int n2 = b.size();
 
@@ -20,7 +17,7 @@ public:
 
         while(low <= high)
         {
-            int mid1 = (low + high) >> 1; //Where to partiton the left smaller array
+            int mid1 = (low + high)/2; //Where to partiton the left smaller array
             int mid2 = left - mid1; //required element for median - elemnts chosen from nums1
 
             int l1 = INT_MIN, l2= INT_MIN; //Incase they point to a blank cell
