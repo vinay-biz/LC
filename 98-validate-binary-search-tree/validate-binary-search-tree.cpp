@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    bool isSorted(vector<int>& ans)
+    inline bool isSorted(vector<int>& ans)
     {
         for(int i = 1; i < ans.size(); i++)
         {
