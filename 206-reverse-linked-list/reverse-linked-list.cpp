@@ -11,6 +11,9 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         ListNode* prev = nullptr;
         ListNode* curr = head;
 
