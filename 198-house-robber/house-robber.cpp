@@ -4,9 +4,7 @@ public:
         int curr = 0, ahead = 0, ahead2 = 0;
 
         for(int i = 0; i < nums.size(); i++) {
-            int take = nums[i] + ahead2;
-            int notTake = ahead;
-            curr = max(take, notTake);
+            curr = max(nums[i] + ahead2, ahead);
 
             ahead2 = ahead;
             ahead = curr;
