@@ -1,15 +1,13 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        int curr = 0, ahead = 0, ahead2 = 0;
-
-        for(int i = 0; i < nums.size(); i++) {
-            curr = max(nums[i] + ahead2, ahead);
-
-            ahead2 = ahead;
-            ahead = curr;
+        int n = nums.size();
+        if(n == 1) return nums[0];
+        nums[1] = max(nums[0], nums[1]);
+        for(int i = 2; i < nums.size(); i++) {
+            nums[i] = max(nums[i] + nums[i-2], nums[i-1]);
         }
 
-        return ahead;
+        return nums[n-1];
     }
 };
