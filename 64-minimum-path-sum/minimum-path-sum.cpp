@@ -1,6 +1,9 @@
 class Solution {
 public:
     int minPathSum(vector<vector<int>>& grid) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int n = grid[0].size();
         vector<int> prev(n, 0), curr(n, 0);
         curr[0] = grid[0][0];
