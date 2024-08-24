@@ -9,11 +9,7 @@ public:
             for(int j = 0; j < n; ++j) {
 
                 if(i == 0 && j == 0) continue;
-
-                int up  = (i > 0) ? grid[i][j] + prev[j] : 1e9;
-                int right = (j > 0) ? grid[i][j] + curr[j-1] : 1e9;
-
-                curr[j] = min(up, right);
+                curr[j] = min(((i > 0) ? grid[i][j] + prev[j] : 1e9), ((j > 0) ? grid[i][j] + curr[j-1] : 1e9));
             }
             prev = curr;
         }
