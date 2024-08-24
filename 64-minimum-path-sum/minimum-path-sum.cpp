@@ -1,27 +1,17 @@
 class Solution {
 public:
+    int helper(vector<vector<int>>& grid, int i, int j, vector<vector<int>>& dp)
+    {
+        if(i < 0 || j < 0) return 1e9;
+        if(i == 0 && j == 0) return grid[i][j];
+        if(dp[i][j] != -1) return dp[i][j];
+        
+        return dp[i][j] = min((grid[i][j] + helper(grid, i-1, j, dp)), (grid[i][j] + helper(grid, i, j-1, dp)));
+    }
     int minPathSum(vector<vector<int>>& grid) {
-        std::ios_base::sync_with_stdio(false);std::cout.tie(nullptr);std::cin.tie(nullptr);
-        int n = grid.size(); int m = grid[0].size(); 
-
-        vector<int> prev(m, 0), curr(m, 0);
-        curr[0] = grid[0][0];
-
-        for(int i=0; i<n; i++)
-        {
-            for(int j=0; j<m; j++)
-            {
-                if(i == 0 && j == 0) continue;
-
-                int up = (i > 0) ? prev[j] + grid[i][j] : 1e9;
-                int left = (j > 0) ? curr[j-1] + grid[i][j] : 1e9;
-
-                curr[j] = min(up,left);
-            }
-
-            prev = curr;
-            curr = vector<int> (m,0);
-        }
-        return prev[m-1];
+        int m = grid.size();
+        int n = grid[0].size();
+        vector<vector<int>> dp(m, vector<int> (n, -1));
+        return helper(grid, m-1, n-1, dp);
     }
 };
