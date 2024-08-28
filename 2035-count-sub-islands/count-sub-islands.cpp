@@ -12,6 +12,9 @@ public:
 
     }
     int countSubIslands(vector<vector<int>>& grid1, vector<vector<int>>& grid2) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int count = 0;
 
         for(int i = 0; i < grid2.size(); ++i) {
