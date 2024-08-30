@@ -1,10 +1,6 @@
 class Solution {
 public:
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
-        if(intervals.empty()) {
-            intervals.push_back(newInterval);
-            return intervals;
-        }
 
         vector<vector<int>> ans;
         bool inserted = false;
