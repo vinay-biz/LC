@@ -1,6 +1,9 @@
 class Solution {
 public:
     double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start_node, int end_node) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         vector<vector<pair<int, double>>> adj(n); //First convert to an adjacency list
 
         for(int i = 0;  i < edges.size(); ++i) {
