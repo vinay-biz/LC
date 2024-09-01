@@ -1,10 +1,9 @@
 class Solution {
 public:
     int reverse(int x) {
-        bool neg = false;
-        if(x < 0) neg = true;
+        bool neg = (x > 0) ? false : true;
         x = abs(x);
-        
+
         long long rev = 0;
         while(x > 0){
             int mod = x%10;
