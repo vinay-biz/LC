@@ -10,7 +10,7 @@ public:
 
         for(int i = 0; i < chalk.size(); i++) {
             if(sum - chalk[i] < 0) return i;
-            else sum = sum - chalk[i]; 
+            sum = sum - chalk[i]; 
         }
 
         return 0;
