@@ -2,14 +2,12 @@ class Solution {
 public:
     int chalkReplacer(vector<int>& chalk, int k) {
         long long sum = 0;
-        for(int i = 0; i < chalk.size(); ++i)
-            sum += (long long)chalk[i];
-    
-        sum = k%sum;
+        sum = accumulate(chalk.begin(), chalk.end(), sum);
+        k = k % sum;
 
-        for(int i = 0; i < chalk.size(); i++) {
-            if(sum - chalk[i] < 0) return i;
-            sum = sum - chalk[i]; 
+        for(int i = 0; i  < chalk.size(); ++i) {
+            if(k < chalk[i]) return i;
+            k = k - chalk[i];
         }
 
         return 0;
