@@ -12,6 +12,9 @@ public:
         dfs(grid,i,j+1, count);
     }
     int findMaxFish(vector<vector<int>>& grid) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int ans = 0, m = grid.size(), n = grid[0].size();
         for(int i=0; i<m; i++) {
             for(int j=0; j<n; j++) {
