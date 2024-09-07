@@ -1,6 +1,9 @@
 class Solution {
 public:
     int countPaths(int n, vector<vector<int>>& roads) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         vector<vector<pair<int, long long>>> adj(n);  // Using pair instead of vector<vector<long long>>
 
         for(int i = 0; i < roads.size(); i++) {
