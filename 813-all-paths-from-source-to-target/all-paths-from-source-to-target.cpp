@@ -11,6 +11,9 @@ public:
         recst.pop_back();
     }
     vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int n = graph.size();
         vector<vector<int>> ans;
         vector<int> recst;
