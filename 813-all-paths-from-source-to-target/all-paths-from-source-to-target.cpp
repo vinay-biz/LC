@@ -6,14 +6,8 @@ public:
             ans.push_back(recst);
             return;
         }
-
         recst.push_back(node);
-
-        for(auto adj : graph[node])
-        {
-            dfs(graph, recst, ans, adj, n);
-        }
-
+        for(auto adj : graph[node]) dfs(graph, recst, ans, adj, n);
         recst.pop_back();
     }
     vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
