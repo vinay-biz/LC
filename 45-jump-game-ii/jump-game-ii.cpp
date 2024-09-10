@@ -1,6 +1,9 @@
 class Solution {
 public:
     int jump(vector<int>& nums) {
+        std::ios_base::sync_with_stdio(false);
+        std::cout.tie(nullptr);
+        std::cin.tie(nullptr);
         int n = nums.size();
         vector<int> dp(n+1, 1);
         dp[n] = 1e9; dp[n-1] = 0;
