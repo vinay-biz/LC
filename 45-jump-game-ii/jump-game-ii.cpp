@@ -1,6 +1,7 @@
 class Solution {
 public:
-    int helper(vector<int>& nums,int& n, int i, vector<int>& dp) {
+    int helper(vector<int>& nums, int i, vector<int>& dp) {
+        int n = nums.size();
         if(i >= n) return 1e9;
 
         if(i == n-1) return 0;
@@ -10,7 +11,7 @@ public:
         int jump = 1e9;
         for(int j = 1; j <= nums[i]; ++j){
             if(i + j < n){
-                int temp = 1 + helper(nums,n, i+j, dp);
+                int temp = 1 + helper(nums, i+j, dp);
                 jump = min(jump, temp);
             }
         }
@@ -18,8 +19,7 @@ public:
         return dp[i] = jump;
     }
     int jump(vector<int>& nums) {
-        int n =  nums.size();
-        vector<int> dp(n, -1);
-        return helper(nums,n, 0, dp);
+        vector<int> dp(nums.size(), -1);
+        return helper(nums, 0, dp);
     }
 };
